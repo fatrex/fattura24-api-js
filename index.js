@@ -1,4 +1,5 @@
 const axios = require('axios')
+const querystring = require('querystring')
 
 const APIError = require('./classes/APIError')
 const APIResponse = require('./classes/APIResponse')
@@ -10,15 +11,19 @@ class Fattura24API {
     this.apiVersion = apiVersion
 
     this.$axios = axios.create({
-      baseURL: `https://www.app.fattura24.com/api/v${this.apiVersion}`
+      baseURL: `https://www.app.fattura24.com/api/v${this.apiVersion}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     })
   }
 
   async testKey () {
     try {
-      const response = await this.$axios.post('/TestKey', {
+      const payload = {
         apiKey: this.apiKey
-      })
+      }
+      const response = await this.$axios.post('/TestKey', querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
       throw new APIError(error.toString())
