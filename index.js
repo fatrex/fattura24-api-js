@@ -1,5 +1,6 @@
 const axios = require('axios')
 const querystring = require('querystring')
+const XMLParser = require('fast-xml-parser').j2xParser
 
 const APIError = require('./classes/APIError')
 const APIResponse = require('./classes/APIResponse')
@@ -18,12 +19,35 @@ class Fattura24API {
     })
   }
 
+  __buildXML (jsonData) {
+    const parser = new XMLParser()
+    const xml = parser.parse({
+      Fattura24: {
+        Document: jsonData
+      }
+    })
+    return xml
+  }
+
   async testKey () {
     try {
       const payload = {
         apiKey: this.apiKey
       }
       const response = await this.$axios.post('/TestKey', querystring.stringify(payload))
+      return new APIResponse(response)
+    } catch (error) {
+      throw new APIError(error.toString())
+    }
+  }
+
+  async saveCustomer (customerData) {
+    try {
+      const payload = {
+        apiKey: this.apiKey,
+        xml: this.__buildXML(customerData)
+      }
+      const response = await this.$axios.post('/SaveCustomer', querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
       throw new APIError(error.toString())
