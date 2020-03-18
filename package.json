@@ -16,7 +16,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "fast-xml-parser": "^3.16.0",
-    "html-entities": "^1.2.1"
+    "html-entities": "^1.2.1",
+    "lodash": "^4.17.15"
   },
   "resolutions": {
     "minimist": "^1.2.2"

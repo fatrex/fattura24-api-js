@@ -1,6 +1,7 @@
 const axios = require('axios')
 const querystring = require('querystring')
 const XMLParser = require('fast-xml-parser').j2xParser
+const _ = require('lodash')
 
 const APIError = require('./classes/APIError')
 const APIResponse = require('./classes/APIResponse')
@@ -21,9 +22,15 @@ class Fattura24API {
 
   __buildXML (jsonData) {
     const parser = new XMLParser()
+    const specialCharsRegex = new RegExp(/[^\w*]/g)
     const xml = parser.parse({
       Fattura24: {
-        Document: jsonData
+        Document: _.mapValues(jsonData, item => {
+          if (specialCharsRegex.test(item)) {
+            return `<![CDATA[${item}]]>`
+          }
+          return item
+        })
       }
     })
     return xml
