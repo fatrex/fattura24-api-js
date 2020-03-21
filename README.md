@@ -8,8 +8,8 @@ This package in simply a wrapper for the Fattura24 API. It's a collection of met
 
 #### Install it
 ```bash
-yarn install fattura24-api-js
-// OR npm install fattura24-ap-js
+$ yarn install fattura24-api-js
+# OR npm install fattura24-ap-js
 ```
 #### Require it
 ```javascript
