@@ -21,12 +21,12 @@ class Fattura24API {
   }
 
   __buildXML (jsonData) {
-    const parser = new XMLParser()
+    const parser = new XMLParser({ arrayMode: true })
     const specialCharsRegex = new RegExp(/[^\w*]/g)
     const xml = parser.parse({
       Fattura24: {
         Document: _.mapValues(jsonData, item => {
-          if (specialCharsRegex.test(item)) {
+          if (!Array.isArray(item) && specialCharsRegex.test(item)) {
             return `<![CDATA[${item}]]>`
           }
           return item
@@ -55,6 +55,20 @@ class Fattura24API {
         xml: this.__buildXML(customerData)
       }
       const response = await this.$axios.post('/SaveCustomer', querystring.stringify(payload))
+      return new APIResponse(response)
+    } catch (error) {
+      throw new APIError(error.toString())
+    }
+  }
+
+  async saveDocument (documentData) {
+    try {
+      const payload = {
+        apiKey: this.apiKey,
+        xml: this.__buildXML(documentData)
+      }
+      console.log(payload)
+      const response = await this.$axios.post('/SaveDocument', querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
       throw new APIError(error.toString())
