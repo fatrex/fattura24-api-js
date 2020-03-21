@@ -13,7 +13,7 @@ $ yarn install fattura24-api-js
 ```
 #### Require it
 ```javascript
-const Fattura24API = require('fattura24-api-js)
+const Fattura24API = require('fattura24-api-js')
 ```
 
 #### Use it
@@ -76,7 +76,11 @@ await fattura24.saveDocument({
 
 
 ## Changelog
+~ [0.0.2] - 2020-03-21
+  - Added Helpers class for XML building
 
+~ [0.0.1] - 2020-03-21
+  - First release
 
 ## License and Copyright
 Licensed under [MIT](http://www.opensource.org/licenses/mit-license.php) license.
