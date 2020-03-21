@@ -20,16 +20,37 @@ class Fattura24API {
     })
   }
 
+  __parseItem (item) {
+    let parsed
+    if (Array.isArray(item)) {
+      parsed = []
+      for (const index in item) {
+        parsed[index] = this.__parseItem(item[index])
+      }
+    } else if (typeof item === 'object') {
+      const key = Object.keys(item)[0]
+      parsed = {}
+      parsed[key] = {}
+      for (const innerKey in item[key]) {
+        parsed[key][innerKey] = this.__parseItem(item[key][innerKey])
+      }
+    } else {
+      const specialCharsRegex = new RegExp(/[^\w*]/g)
+      if (specialCharsRegex.test(item)) {
+        parsed = `<![CDATA[${item}]]>`
+      } else {
+        parsed = item
+      }
+    }
+    return parsed
+  }
+
   __buildXML (jsonData) {
     const parser = new XMLParser({ arrayMode: true })
-    const specialCharsRegex = new RegExp(/[^\w*]/g)
     const xml = parser.parse({
       Fattura24: {
         Document: _.mapValues(jsonData, item => {
-          if (!Array.isArray(item) && specialCharsRegex.test(item)) {
-            return `<![CDATA[${item}]]>`
-          }
-          return item
+          return this.__parseItem(item)
         })
       }
     })
@@ -67,7 +88,6 @@ class Fattura24API {
         apiKey: this.apiKey,
         xml: this.__buildXML(documentData)
       }
-      console.log(payload)
       const response = await this.$axios.post('/SaveDocument', querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
