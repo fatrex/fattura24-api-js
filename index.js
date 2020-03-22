@@ -1,7 +1,6 @@
 const axios = require('axios')
 const querystring = require('querystring')
 
-const APIError = require('./classes/APIError')
 const APIResponse = require('./classes/APIResponse')
 const Helpers = require('./classes/Helpers')
 
@@ -37,7 +36,7 @@ for (const methodName in methods) {
       const response = await this.$axios.post(endpoint, querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
-      throw new APIError(error.toString())
+      return error
     }
   }
 }
