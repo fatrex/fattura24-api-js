@@ -3,8 +3,24 @@
   "version": "0.0.3",
   "description": "Fattura24 API wrapper for Node.js",
   "main": "src/Fattura24API.js",
-  "author": "Daniele Lenares <daniele.lenares@gmail.com>",
+  "author": {
+    "name": "Daniele Lenares",
+    "email": "daniele.lenares@gmail.com",
+    "url": "https://dnlnrs.dev"
+  },
   "license": "MIT",
+  "keywords": [
+    "api",
+    "fattura24",
+    "invoice",
+    "customer",
+    "document",
+    "e-invoicing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnlnrs/fattura24-api-js"
+  },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",

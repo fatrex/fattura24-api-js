@@ -1,4 +1,6 @@
-[![codebeat badge](https://codebeat.co/badges/e475c336-c496-40ea-9f0f-955f34746915)](https://codebeat.co/projects/github-com-dnlnrs-fattura24-api-js-master)
+![npm](https://img.shields.io/npm/v/fattura24-api-js?style=flat-square)
+![NPM](https://img.shields.io/npm/l/fattura24-api-js?style=flat-square)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
 # Fattura24 API Wrapper ~ Node.js
 
