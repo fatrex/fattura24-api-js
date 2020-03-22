@@ -18,39 +18,23 @@ class Fattura24API {
       }
     })
   }
+}
 
-  async testKey () {
-    try {
-      const payload = {
-        apiKey: this.apiKey
-      }
-      const response = await this.$axios.post('/TestKey', querystring.stringify(payload))
-      return new APIResponse(response)
-    } catch (error) {
-      throw new APIError(error.toString())
-    }
-  }
+const methods = {
+  testKey: '/TestKey',
+  saveCustomer: '/SaveCustomer',
+  saveDocument: '/SaveDocument'
+}
 
-  async saveCustomer (customerData) {
+for (const methodName in methods) {
+  const endpoint = methods[methodName]
+  Fattura24API.prototype[methodName] = async function (data) {
     try {
       const payload = {
         apiKey: this.apiKey,
-        xml: Helpers.buildXML(customerData)
+        xml: Helpers.buildXML(data)
       }
-      const response = await this.$axios.post('/SaveCustomer', querystring.stringify(payload))
-      return new APIResponse(response)
-    } catch (error) {
-      throw new APIError(error.toString())
-    }
-  }
-
-  async saveDocument (documentData) {
-    try {
-      const payload = {
-        apiKey: this.apiKey,
-        xml: Helpers.buildXML(documentData)
-      }
-      const response = await this.$axios.post('/SaveDocument', querystring.stringify(payload))
+      const response = await this.$axios.post(endpoint, querystring.stringify(payload))
       return new APIResponse(response)
     } catch (error) {
       throw new APIError(error.toString())
