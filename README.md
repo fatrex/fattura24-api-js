@@ -1,5 +1,5 @@
-![npm](https://img.shields.io/npm/v/fattura24-api-js?style=flat-square)
-![NPM](https://img.shields.io/npm/l/fattura24-api-js?style=flat-square)
+[![npm](https://img.shields.io/npm/v/fattura24-api-js?style=flat-square)](https://www.npmjs.com/package/fattura24-api-js)
+[![MIT](https://img.shields.io/npm/l/fattura24-api-js?style=flat-square)](https://opensource.org/licenses/MIT)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
 # Fattura24 API Wrapper ~ Node.js
