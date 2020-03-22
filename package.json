@@ -1,6 +1,6 @@
 {
   "name": "fattura24-api-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Fattura24 API wrapper for Node.js",
   "main": "src/Fattura24API.js",
   "author": {
