@@ -2,7 +2,7 @@
   "name": "fattura24-api-js",
   "version": "0.0.2",
   "description": "Fattura24 API wrapper for Node.js",
-  "main": "index.js",
+  "main": "src/Fattura24API.js",
   "author": "Daniele Lenares <daniele.lenares@gmail.com>",
   "license": "MIT",
   "devDependencies": {
