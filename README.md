@@ -79,7 +79,9 @@ await fattura24.saveDocument({
 
 
 ## Changelog
-### [0.0.4] - 2020-08-25
+### [0.0.5] - 2020-08-25
+ - Deps update
+### [0.0.4] - 2020-03-22
  - Deps update
 ### [0.0.3] - 2020-03-22
  - Removed customer error
